@@ -1,161 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="sunset">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Md. Babur Raiyan | CV</title>
-<style>
-  :root {
-    --bg: #f4f6f9;
-    --card: #ffffff;
-    --text: #1f2937;
-    --muted: #6b7280;
-    --accent: #2563eb;
-    --line: #e5e7eb;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 24px 16px 48px; }
 
-  header {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 28px 24px;
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,.06);
-  }
-  .photo {
-    width: 140px;
-    height: 160px;
-    flex-shrink: 0;
-    border-radius: 12px;
-    border: 2px dashed var(--accent);
-    background: #eff4ff;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-    overflow: hidden;
-  }
-  /* To use your real photo: put photo.jpg next to index.html and
-     replace the <div class="photo"> content with <img src="photo.jpg" alt="My photo"> */
-  .photo img { width: 100%; height: 100%; object-fit: cover; }
-  h1 { font-size: 28px; line-height: 1.2; }
-  .title { color: var(--accent); font-weight: 600; margin-top: 4px; }
-  .place { color: var(--muted); font-size: 15px; }
+<!-- Apply saved theme before the page paints (avoids a flash) -->
+<script>
+  try {
+    var saved = localStorage.getItem("cv-theme");
+    if (saved === "autumn" || saved === "sunset") {
+      document.documentElement.setAttribute("data-theme", saved);
+    }
+  } catch (e) {}
+</script>
 
-  section {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 24px;
-    margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.06);
-  }
-  h2 {
-    font-size: 18px;
-    color: var(--accent);
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 8px;
-    margin-bottom: 14px;
-  }
-  .grid { display: grid; grid-template-columns: 160px 1fr; gap: 8px 12px; }
-  .grid dt { color: var(--muted); }
-  .grid dd { font-weight: 500; }
-
-  table { width: 100%; border-collapse: collapse; font-size: 15px; }
-  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
-  th { color: var(--muted); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
-  tr:last-child td { border-bottom: none; }
-
-  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 24px; }
-
-  @media (max-width: 600px) {
-    header { flex-direction: column; text-align: center; }
-    .grid { grid-template-columns: 1fr; gap: 0; }
-    .grid dt { margin-top: 10px; font-size: 13px; }
-    table, thead, tbody, tr, th, td { display: block; }
-    thead { display: none; }
-    tr { padding: 10px 0; border-bottom: 1px solid var(--line); }
-    tr:last-child { border-bottom: none; }
-    td { border: none; padding: 2px 0; }
-    td::before { content: attr(data-label) ": "; color: var(--muted); }
-  }
-</style>
+<!-- Tailwind CSS (browser build) + daisyUI, with all daisyUI themes -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-<div class="wrap">
 
-  <header>
-    <div class="photo">Photo<br>(replace me)</div>
-    <div>
-      <h1>Rahim Ahmed</h1>
-      <p class="title">Software Engineer</p>
-      <p class="place">Tech Solutions Ltd., Dhaka</p>
+<body class="bg-base-200 min-h-screen">
+
+  <!-- Navbar with theme toggle -->
+  <div class="navbar bg-base-100 shadow-sm sticky top-0 z-10">
+    <div class="max-w-3xl w-full mx-auto px-4 flex justify-between">
+      <span class="text-lg font-bold">My CV</span>
+
+      <label class="swap swap-rotate btn btn-ghost btn-circle" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <!-- sun: shown in light (autumn) mode -->
+        <svg class="swap-off h-6 w-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.64 17l-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17zM5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1zm7-7a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1zM5.64 7.05a1 1 0 0 0 .7.29 1 1 0 0 0 .71-.29 1 1 0 0 0 0-1.41l-.71-.71a1 1 0 0 0-1.41 1.41zm12 .29a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.64.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29zM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2zm-9 8a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1zm6.36-2A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41zM12 6.5A5.5 5.5 0 1 0 17.5 12 5.51 5.51 0 0 0 12 6.5zm0 9A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/>
+        </svg>
+        <!-- moon: shown in dark (sunset) mode -->
+        <svg class="swap-on h-6 w-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.79 9.79 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32z"/>
+        </svg>
+      </label>
     </div>
-  </header>
+  </div>
 
-  <section>
-    <h2>Personal Information</h2>
-    <dl class="grid">
-      <dt>Full Name</dt><dd>Rahim Ahmed</dd>
-      <dt>Height</dt><dd>5 ft 8 in</dd>
-      <dt>Weight</dt><dd>68 kg</dd>
-      <dt>Phone</dt><dd><a href="tel:+8801700000000">+880 1700-000000</a></dd>
-      <dt>Present Address</dt><dd>House 12, Road 5, Dhanmondi, Dhaka-1205</dd>
-      <dt>Permanent Address</dt><dd>Village: Rampur, Post: Sadar, District: Rajshahi-6000</dd>
-    </dl>
-  </section>
+  <main class="max-w-3xl mx-auto px-4 py-6 space-y-5">
 
-  <section>
-    <h2>Work</h2>
-    <dl class="grid">
-      <dt>Job Title</dt><dd>Software Engineer</dd>
-      <dt>Job Place</dt><dd>Tech Solutions Ltd., Dhaka</dd>
-    </dl>
-  </section>
+    <!-- Header card with photo carousel -->
+    <div class="card bg-base-100 shadow-md">
+      <div class="card-body flex-col sm:flex-row items-center gap-6">
 
-  <section>
-    <h2>Education</h2>
-    <table>
-      <thead>
-        <tr><th>Degree</th><th>Institution</th><th>Group / Subject</th><th>Year</th><th>Result</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Degree"><strong>SSC</strong></td>
-          <td data-label="Institution">Rampur High School</td>
-          <td data-label="Group">Science</td>
-          <td data-label="Year">2015</td>
-          <td data-label="Result">GPA 5.00</td>
-        </tr>
-        <tr>
-          <td data-label="Degree"><strong>HSC</strong></td>
-          <td data-label="Institution">Rajshahi College</td>
-          <td data-label="Group">Science</td>
-          <td data-label="Year">2017</td>
-          <td data-label="Result">GPA 4.92</td>
-        </tr>
-        <tr>
-          <td data-label="Degree"><strong>BSc</strong></td>
-          <td data-label="Institution">Dhaka University of Engineering</td>
-          <td data-label="Subject">Computer Science &amp; Engineering</td>
-          <td data-label="Year">2022</td>
-          <td data-label="Result">CGPA 3.75 / 4.00</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+        <!-- Photo carousel (3 slides). Replace the src values later. -->
+        <div class="relative w-40 h-48 shrink-0 rounded-xl overflow-hidden border-2 border-dashed border-primary bg-base-200">
+          <div id="photo-carousel" class="carousel w-full h-full">
+            <div class="carousel-item relative w-full">
+              <div class="absolute inset-0 flex items-center justify-center text-sm text-primary text-center">Photo 1<br>(add source)</div>
+              <img src="photo1.jpg" alt="Photo 1" class="relative w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+            <div class="carousel-item relative w-full">
+              <div class="absolute inset-0 flex items-center justify-center text-sm text-primary text-center">Photo 2<br>(add source)</div>
+              <img src="photo2.jpg" alt="Photo 2" class="relative w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+            <div class="carousel-item relative w-full">
+              <div class="absolute inset-0 flex items-center justify-center text-sm text-primary text-center">Photo 3<br>(add source)</div>
+              <img src="photo3.jpg" alt="Photo 3" class="relative w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+          </div>
 
-  <footer>&copy; 2026 Rahim Ahmed. All details above are sample data.</footer>
-</div>
+          <!-- Prev / Next -->
+          <button type="button" id="prev" class="btn btn-circle btn-xs absolute left-1 top-1/2 -translate-y-1/2 opacity-80" aria-label="Previous photo">❮</button>
+          <button type="button" id="next" class="btn btn-circle btn-xs absolute right-1 top-1/2 -translate-y-1/2 opacity-80" aria-label="Next photo">❯</button>
+
+          <!-- Dots -->
+          <div id="dots" class="absolute bottom-1 left-0 right-0 flex justify-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            <span class="w-2 h-2 rounded-full bg-base-content/30"></span>
+            <span class="w-2 h-2 rounded-full bg-base-content/30"></span>
+          </div>
+        </div>
+
+        <div class="text-center sm:text-left">
+          <h1 class="text-3xl font-bold">Rahim Ahmed</h1>
+          <p class="text-primary font-semibold mt-1">Software Engineer</p>
+          <p class="opacity-70">Tech Solutions Ltd., Dhaka</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal information -->
+    <div class="card bg-base-100 shadow-md">
+      <div class="card-body">
+        <h2 class="card-title text-primary">Personal Information</h2>
+        <div class="divider my-0"></div>
+        <dl class="grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-x-4 gap-y-2">
+          <dt class="opacity-60">Full Name</dt><dd class="font-medium">Rahim Ahmed</dd>
+          <dt class="opacity-60">Height</dt><dd class="font-medium">5 ft 8 in</dd>
+          <dt class="opacity-60">Weight</dt><dd class="font-medium">68 kg</dd>
+          <dt class="opacity-60">Phone</dt><dd class="font-medium"><a class="link link-primary" href="tel:+8801700000000">+880 1700-000000</a></dd>
+          <dt class="opacity-60">Present Address</dt><dd class="font-medium">House 12, Road 5, Dhanmondi, Dhaka-1205</dd>
+          <dt class="opacity-60">Permanent Address</dt><dd class="font-medium">Village: Rampur, Post: Sadar, District: Rajshahi-6000</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Work -->
+    <div class="card bg-base-100 shadow-md">
+      <div class="card-body">
+        <h2 class="card-title text-primary">Work</h2>
+        <div class="divider my-0"></div>
+        <dl class="grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-x-4 gap-y-2">
+          <dt class="opacity-60">Job Title</dt><dd class="font-medium">Software Engineer</dd>
+          <dt class="opacity-60">Job Place</dt><dd class="font-medium">Tech Solutions Ltd., Dhaka</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="card bg-base-100 shadow-md">
+      <div class="card-body">
+        <h2 class="card-title text-primary">Education</h2>
+        <div class="divider my-0"></div>
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr><th>Degree</th><th>Institution</th><th>Group / Subject</th><th>Year</th><th>Result</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-bold">SSC</td>
+                <td>Rampur High School</td>
+                <td>Science</td>
+                <td>2015</td>
+                <td>GPA 5.00</td>
+              </tr>
+              <tr>
+                <td class="font-bold">HSC</td>
+                <td>Rajshahi College</td>
+                <td>Science</td>
+                <td>2017</td>
+                <td>GPA 4.92</td>
+              </tr>
+              <tr>
+                <td class="font-bold">BSc</td>
+                <td>Dhaka University of Engineering</td>
+                <td>Computer Science &amp; Engineering</td>
+                <td>2022</td>
+                <td>CGPA 3.75 / 4.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-center text-sm opacity-60 pt-2">&copy; 2026 Rahim Ahmed. All details above are sample data.</footer>
+  </main>
+
+<script>
+  // ---------- Theme toggle: autumn (light) <-> sunset (dark) ----------
+  (function () {
+    var root = document.documentElement;
+    var toggle = document.getElementById("theme-toggle");
+    toggle.checked = root.getAttribute("data-theme") === "sunset";
+
+    toggle.addEventListener("change", function () {
+      var theme = toggle.checked ? "sunset" : "autumn";
+      root.setAttribute("data-theme", theme);
+      try { localStorage.setItem("cv-theme", theme); } catch (e) {}
+    });
+  })();
+
+  // ---------- Photo carousel ----------
+  (function () {
+    var carousel = document.getElementById("photo-carousel");
+    var slides = carousel.querySelectorAll(".carousel-item");
+    var dots = document.querySelectorAll("#dots span");
+    var index = 0;
+
+    function show(i) {
+      index = (i + slides.length) % slides.length;
+      carousel.scrollTo({ left: carousel.clientWidth * index, behavior: "smooth" });
+    }
+
+    function updateDots() {
+      var i = Math.round(carousel.scrollLeft / carousel.clientWidth);
+      dots.forEach(function (d, n) {
+        d.classList.toggle("bg-primary", n === i);
+        d.classList.toggle("bg-base-content/30", n !== i);
+      });
+      index = i;
+    }
+
+    document.getElementById("prev").addEventListener("click", function () { show(index - 1); });
+    document.getElementById("next").addEventListener("click", function () { show(index + 1); });
+    carousel.addEventListener("scroll", updateDots, { passive: true });
+
+    // Auto-advance every 4 seconds
+    setInterval(function () { show(index + 1); }, 4000);
+  })();
+</script>
 </body>
 </html>
